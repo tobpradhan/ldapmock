@@ -1,0 +1,59 @@
+version: 1
+
+#Domain
+dn: dc=ldap,dc=example
+dc: ldap
+objectClass: top
+objectClass: domain
+
+#End of Domain
+
+
+#OU
+dn: ou=Users,dc=ldap,dc=example
+objectClass: organizationalUnit
+objectClass: top
+ou: Users
+
+dn: ou=Roles,dc=ldap,dc=example
+objectclass: top
+objectclass: organizationalUnit
+ou: Roles
+
+#End of OU
+
+
+#users
+dn: uid=sello,ou=Users,dc=ldap,dc=example
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+cn: sello
+sn: sello
+uid: sello
+userPassword: secret
+
+
+dn: uid=siya,ou=Users,dc=ldap,dc=example
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+cn: siya
+sn: siya
+uid: siya
+userPassword: secret
+#End of Users
+
+#Add user to Role
+dn: cn=Admin,ou=Roles,dc=ldap,dc=example
+objectClass: top
+objectClass: groupOfNames
+cn: Admin
+member: uid=sello,ou=Users,dc=ldap,dc=example
+
+dn: cn=Staff,ou=Roles,dc=ldap,dc=example
+objectClass: top
+objectClass: groupOfNames
+cn: Staff
+member: uid=siya,ou=Users,dc=ldap,dc=example
+#End of add users to Role
